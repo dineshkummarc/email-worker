@@ -90,7 +90,8 @@ EmailWorker.prototype._doSend = function(from, email, callbacks) {
       user: this._config.email.auth.user,
       pass: this._config.email.auth.pass
     },
-    secureConnection: true
+    secureConnection: true,
+	service: this._config.email.service
   };
   var smtpTransport = nodemailer.createTransport("SMTP", transport_config);
 
@@ -137,6 +138,7 @@ var config = {
     pass: process.env["CANG_ADMIN_PASS"]
   },
   email: {
+    service: process.env["CANG_EMAIL_SERVICE"],
     host: process.env["CANG_EMAIL_HOST"],
     auth: {
       user: process.env["CANG_EMAIL_USER"],
